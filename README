@@ -1,0 +1,31 @@
+
+Для файла "users.tf":
+#terraform init
+
+1. Управление созданием групп:
+#terraform plan -target="opennebula_group.users" -out deploy_group
+#terraform apply deploy_group 
+
+2. Управление созданием пользователей в эти группы:
+#terraform plan -target="opennebula_user.user" -out deploy_user
+#terraform apply deploy_user
+
+3. Для удаления (на примере пользователей):
+#terraform plan -target="opennebula_user.user" -out destroy_user -destroy
+#terraform apply destroy_user
+_______________________________________________________________________________________
+
+Для файла "deploy_stands":
+#terraform inir
+
+1. Управление созданием приватной сети:
+#terraform plan -target="opennebula_virtual_network.private-network" -out deploy_network
+#terraform apply deploy_network
+
+2. Управление созданием маршрутизатора на основе "Service VNF":
+#terraform plan -target="opennebula_virtual_machine.router_nat" -out deploy_router
+#terraform apply deploy_router
+
+3. Управление созданием виртуальных манин на основе "CentOS 8 Stream":
+#terraform plan -target="opennebula_virtual_machine.srv" -out deploy_srv
+#terraform apply deploy_srv
